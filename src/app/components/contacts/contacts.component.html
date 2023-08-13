@@ -1,3 +1,23 @@
-<p>contacts works!</p>
-
+<h3>Contatos</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>{{contact.id}}</td>
+        <td>{{contact.name}}</td>
+        <td>{{contact.phone}}</td>
+        <td>
+            <a class="btn btn-light me-2" [routerLink]="['/contacts/edit/', contact.id]">Editar</a>
+            <button class="btn btn-danger"(click)="onDelete(contact.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <button (click)="onLogout()">Logout</button>

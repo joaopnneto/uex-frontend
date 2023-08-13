@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Contact } from 'src/app/interfaces/contact';
+import { ContactsService } from 'src/app/services/contacts.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,10 +11,17 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ContactsComponent {
 
+  contacts: Contact[] = [];
+
   constructor(
     private userService: UsersService,
-    private router: Router
+    private router: Router,
+    private contactService: ContactsService
   ){}
+
+  ngOnInit(){
+    this.getContacts();
+  }
 
   onLogout(){
     this.userService.logout().subscribe(
@@ -22,6 +31,24 @@ export class ContactsComponent {
       },
       (error) => {
         console.log(error)
+      }
+    )
+  }
+
+  getContacts(){
+    this.contactService.getAllContacts().subscribe(
+      (response) => {
+        this.contacts = response;
+      },
+      (error) => {
+      }
+    )
+  }
+
+  onDelete(contactId: number){
+    this.contactService.deleteContact(contactId).subscribe(
+      () => {
+        this.getContacts();
       }
     )
   }
