@@ -6,28 +6,32 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5">Cadastro</h3>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="form-outline mb-4">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control form-control-lg" formControlName="name" />
+                <div class="text-danger" *ngIf="registerForm.get('name')?.invalid && registerForm?.get('name')?.touched">Nome obrigatório</div>
+              </div>
 
-						<div class="form-outline mb-4">
-							<label class="form-label">Nome</label>
-              <input type="email" class="form-control form-control-lg" />
-            </div>
+              <div class="form-outline mb-4">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control form-control-lg" formControlName="email" />
+                <div class="text-danger" *ngIf="registerForm.get('email')?.invalid && registerForm?.get('email')?.touched">Email obrigatório</div>
+              </div>
 
-            <div class="form-outline mb-4">
-							<label class="form-label">Email</label>
-              <input type="email" class="form-control form-control-lg" />
-            </div>
+              <div class="form-outline mb-4">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-control form-control-lg" formControlName="password" />
+                <div class="text-danger" *ngIf="registerForm.get('password')?.invalid && registerForm?.get('password')?.touched">Senha obrigatória</div>
+              </div>
 
-            <div class="form-outline mb-4">
-							<label class="form-label">Senha</label>
-              <input type="password" class="form-control form-control-lg" />
-            </div>
-
-						<div class="form-outline mb-4">
-							<label class="form-label">Confirmação Senha</label>
-              <input type="password" class="form-control form-control-lg" />
-            </div>
-
-            <button class="btn btn-primary btn-lg btn-block w-100" type="submit">Cadastro</button>
+              <div class="form-outline mb-4">
+                <label class="form-label">Confirmação Senha</label>
+                <input type="password" class="form-control form-control-lg" formControlName="password_confirmation" />
+                <div class="text-danger" *ngIf="registerForm.get('password_confirmation')?.invalid && registerForm?.get('password_confirmation')?.touched">Confirmação da senha obrigatória</div>
+              </div>
+              <button [disabled]="registerForm.invalid" class="btn btn-primary btn-lg btn-block w-100" type="submit">Cadastro</button>
+            </form>
           </div>
         </div>
       </div>
