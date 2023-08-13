@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { UsersComponent } from './components/users/users.component';
+import { LoginComponent } from './components/users/login/login.component';
+import { SignUpComponent } from './components/users/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsComponent,
-    UsersComponent
+    UsersComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
