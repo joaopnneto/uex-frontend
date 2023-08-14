@@ -12,6 +12,19 @@ import { UsersService } from 'src/app/services/users.service';
 export class ContactsComponent {
 
   contacts: Contact[] = [];
+  lat!: number;
+  lng!: number;
+
+  options: google.maps.MapOptions = {
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    maxZoom: 15,
+    minZoom: 8,
+  };
+
+  center!: google.maps.LatLngLiteral;
+  markerPosition: google.maps.LatLngLiteral = {lat: this.lat, lng: this.lng };
 
   constructor(
     private userService: UsersService,
@@ -21,6 +34,31 @@ export class ContactsComponent {
 
   ngOnInit(){
     this.getContacts();
+    this.initMap();
+  }
+
+  initMap(){
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      this.markerPosition = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      }
+    });
+  }
+
+  getCurrentLocation(){
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(
+        (params) => {
+          this.lat = params.coords.latitude;
+          this.lng = params.coords.longitude;
+        }
+      );
+    }
   }
 
   onLogout(){
@@ -51,5 +89,18 @@ export class ContactsComponent {
         this.getContacts();
       }
     )
+  }
+
+  addPin(contact: any){
+    console.log(contact);
+
+    this.center = {
+      lat: parseFloat(contact.coordinate.latitude),
+      lng: parseFloat(contact.coordinate.longitude),
+    };
+    this.markerPosition = {
+      lat: parseFloat(contact.coordinate.latitude),
+      lng: parseFloat(contact.coordinate.longitude),
+    };
   }
 }

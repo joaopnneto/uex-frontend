@@ -10,6 +10,8 @@ import { UsersComponent } from './components/users/users.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { SignUpComponent } from './components/users/sign-up/sign-up.component';
 import { ContactFormComponent } from './components/contacts/contact-form/contact-form.component';
+import { MasksDirective } from './shared/masks.directive';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -18,14 +20,16 @@ import { ContactFormComponent } from './components/contacts/contact-form/contact
     UsersComponent,
     LoginComponent,
     SignUpComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    MasksDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
