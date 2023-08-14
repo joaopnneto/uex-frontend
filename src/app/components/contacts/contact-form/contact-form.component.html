@@ -1,0 +1,55 @@
+<div class="container mt-5">
+	<h3>Novo contato</h3>
+	<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="row g-3">
+		<div class="col-md-4">
+			<label class="form-label">Nome</label>
+			<input type="text" class="form-control" placeholder="Ex: José" formControlName="name">
+		</div>
+		<div class="col-md-4">
+			<label class="form-label">CPF</label>
+			<input type="text" class="form-control" placeholder="Ex: 123.123.123-56" formControlName="cpf">
+		</div>
+		<div class="col-md-4">
+			<label class="form-label">Telefone</label>
+			<input type="text" class="form-control" placeholder="Ex: (15) 12345-1234" formControlName="phone" mask='(00)00000-0000' maxlength="14">
+		</div>
+		<h3>Endereço</h3>
+		<div class="col-6">
+			<label class="form-label">Logradouro</label>
+			<input class="form-control" (blur)="textSearch()" type="search" placeholder="Ex: Marechal" formControlName="street">
+			<div class="list-container">
+				<ul class="list-group list-group-light" >
+					<li class="list-group-item" *ngFor="let address of results" [value]="address" (click)="onSelect($event)">{{ address.formatted_address }}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-3">
+			<label class="form-label">Número</label>
+			<input type="text" class="form-control" placeholder="Ex: 290" formControlName="number">
+		</div>
+		<div class="col-3">
+			<label class="form-label">Complemento</label>
+			<input type="text" class="form-control" placeholder="Ex: Apartmento" formControlName="complement">
+		</div>
+		<div class="col-3">
+			<label class="form-label">Bairro</label>
+			<input type="text" class="form-control" placeholder="Ex: Centro" formControlName="password" formControlName="neighborhood">
+		</div>
+		<div class="col-3">
+			<label class="form-label">CEP</label>
+			<input (blur)="viacepSearch()" type="text" class="form-control" placeholder="Ex: 18320-000" formControlName="zip_code" maxlength="9">
+		</div>
+		<div class="col-md-3">
+			<label class="form-label">Cidade</label>
+			<input type="text" class="form-control" placeholder="Ex: Curitiba" formControlName="city">
+		</div>
+		<div class="col-md-3">
+			<label class="form-label">Estado</label>
+			<input type="text" class="form-control" placeholder="Ex: PR" formControlName="uf">
+		</div>
+		<div class="col-12">
+			<a class="btn btn-secondary me-2" [routerLink]="['/contacts']">Voltar</a>
+			<button type="submit" class="btn btn-primary">Salvar</button>
+		</div>
+	</form>
+</div>

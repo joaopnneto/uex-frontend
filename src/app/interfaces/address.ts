@@ -1,6 +1,7 @@
 import { Coordinate } from "./coordinate"
 
 export interface Address {
+    id?: number,
     street: string,
     number: string,
     complement?: string,
