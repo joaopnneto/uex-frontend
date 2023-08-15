@@ -1,11 +1,11 @@
-<div class="row">
-	<div class="col-4">
-		<div class="container mt-5">
-		<div class="d-flex align-items-center justify-content-between mb-4">
-			<h3>Contatos</h3>
-			<a class="btn btn-primary me-2" [routerLink]="['/contacts/new']">Novo Contato</a>
-		</div>
-		<table class="table">
+<div class="container mt-5">
+	<div class="row d-flex justify-content-center">
+		<div class="col-6">
+			<div class="d-flex align-items-center justify-content-between mb-4">
+				<h3>Contatos</h3>
+				<a class="btn btn-primary me-2" [routerLink]="['/contacts/new']">Novo Contato</a>
+			</div>
+			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">Nome</th>
@@ -15,7 +15,7 @@
 				</thead>
 				<tbody>
 					<tr *ngFor="let contact of contacts">
-						<td><input type="checkbox" (click)="addPin(contact)"></td>
+						<td><input class="form-check-input" type="radio" name="flexRadio" (click)="addPin(contact)"></td>
 						<td>{{contact.name}}</td>
 						<td>{{contact.phone}}</td>
 						<td>
@@ -30,16 +30,12 @@
 					</tr>
 				</tbody>
 			</table>
-		<button (click)="onLogout()">Logout</button>
+			<button (click)="onLogout()">Logout</button>
 		</div>
-	</div>
-	<div class="col-6">
-		<div class="container mt-5">
-			<div class="col-8 maps" >
-				<google-map [options]="options" [center]="center">
-					<map-marker [position]="markerPosition"></map-marker>
-				</google-map>
-			</div>
+		<div class="col-6">
+			<google-map [options]="options" [center]="center">
+				<map-marker [position]="markerPosition"></map-marker>
+			</google-map>
 		</div>
 	</div>
 </div>
