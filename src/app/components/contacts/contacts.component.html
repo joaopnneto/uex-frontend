@@ -1,6 +1,6 @@
 <div class="container mt-5">
 	<div class="row d-flex justify-content-center">
-		<div class="col-6">
+		<div class="col-4">
 			<div class="d-flex align-items-center justify-content-between mb-4">
 				<h3>Contatos</h3>
 				<a class="btn btn-primary me-2" [routerLink]="['/contacts/new']">Novo Contato</a>
@@ -32,7 +32,7 @@
 			</table>
 			<button (click)="onLogout()">Logout</button>
 		</div>
-		<div class="col-6">
+		<div class="col-8">
 			<google-map [options]="options" [center]="center">
 				<map-marker [position]="markerPosition"></map-marker>
 			</google-map>

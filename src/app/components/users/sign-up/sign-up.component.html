@@ -26,11 +26,14 @@
               </div>
 
               <div class="form-outline mb-4">
-                <label class="form-label">Confirmação Senha</label>
+                <label class="form-label">Confirmação da senha</label>
                 <input type="password" class="form-control form-control-lg" formControlName="password_confirmation" />
                 <div class="text-danger" *ngIf="registerForm.get('password_confirmation')?.invalid && registerForm?.get('password_confirmation')?.touched">Confirmação da senha obrigatória</div>
               </div>
-              <button [disabled]="registerForm.invalid" class="btn btn-primary btn-lg btn-block w-100" type="submit">Cadastro</button>
+              <div>
+                <a class="btn btn-primary btn-lg me-3" [routerLink]="['/']">Voltar</a>
+                <button [disabled]="registerForm.invalid" class="btn btn-primary btn-lg btn-block w-50" type="submit">Registre-se</button>
+              </div>
             </form>
           </div>
         </div>

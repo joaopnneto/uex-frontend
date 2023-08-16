@@ -33,8 +33,8 @@ export class ContactsComponent {
   ){}
 
   ngOnInit(){
-    this.getContacts();
     this.initMap();
+    this.getContacts();
   }
 
   initMap(){
@@ -64,7 +64,7 @@ export class ContactsComponent {
   onLogout(){
     this.userService.logout().subscribe(
       () => {
-        localStorage.removeItem('token')
+        localStorage.clear()
         this.router.navigate(['/'])
       },
       (error) => {
