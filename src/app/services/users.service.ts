@@ -26,6 +26,7 @@ export class UsersService {
   logout(): Observable<any> {
     const url = `${environment.apiUrl}/users/sign_out`
 
+    localStorage.clear()
     return this.http.delete(url)
   }
 }

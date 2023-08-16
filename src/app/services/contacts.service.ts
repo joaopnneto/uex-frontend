@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -7,14 +7,22 @@ import { Contact } from '../interfaces/contact';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactsService {
 
+export class ContactsService {
   constructor(private http: HttpClient) { }
+
+ private getHeaders(): HttpHeaders {
+  const authToken = localStorage['token'];
+  return new HttpHeaders({
+    'Authorization': `Bearer ${authToken}`
+  });
+}
 
   getAllContacts(): Observable<any> {
     const url = `${environment.apiUrl}/contacts`
+    const headers = this.getHeaders();
 
-    return this.http.get(url);
+    return this.http.get(url, { headers });
   }
 
   getContact(contactId: number): Observable<any> {
@@ -31,8 +39,9 @@ export class ContactsService {
 
   createContact(contact: Contact): Observable<any> {
     const url = `${environment.apiUrl}/contacts`
+    const headers = this.getHeaders();
 
-    return this.http.post(url, contact);
+    return this.http.post(url, contact, { headers });
   }
 
   updateContact(contact: Contact): Observable<any> {
