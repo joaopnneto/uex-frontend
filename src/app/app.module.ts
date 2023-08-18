@@ -12,6 +12,7 @@ import { SignUpComponent } from './components/users/sign-up/sign-up.component';
 import { ContactFormComponent } from './components/contacts/contact-form/contact-form.component';
 import { MasksDirective } from './shared/masks.directive';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ProfileComponent } from './components/users/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     LoginComponent,
     SignUpComponent,
     ContactFormComponent,
-    MasksDirective
+    MasksDirective,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,10 @@ export class LoginComponent {
       this.userService.login(user).subscribe(
         (response) => {
           localStorage.setItem('token', response.current_user.auth_token)
+          localStorage.setItem('username', response.current_user.email)
+          localStorage.setItem('name', response.current_user.name)
+          localStorage.setItem('id', response.current_user.id)
+
           this.router.navigate(['/contacts'])
         },
         (error) => {
