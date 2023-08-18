@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { Observable } from 'rxjs';
@@ -27,6 +27,19 @@ export class UsersService {
     const url = `${environment.apiUrl}/users/sign_out`
 
     localStorage.clear()
+    return this.http.delete(url)
+  }
+
+  updateUser(user: User): Observable<any> {
+    const url = `${environment.apiUrl}/users`
+    const updatedParams = { user };
+
+    return this.http.put(url, updatedParams)
+  }
+
+  deleteAccount(user_id: number): Observable<any> {
+    const url = `${environment.apiUrl}/users/${user_id}`
+
     return this.http.delete(url)
   }
 }
